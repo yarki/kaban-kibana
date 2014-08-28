@@ -48,6 +48,9 @@ require.config({
     numeral:                  '../vendor/numeral',
     jsonpath:                 '../vendor/jsonpath',
     elasticjs:                '../vendor/elasticjs/elastic-angular-client',
+    
+    angulartics:              '../vendor/angulartics/angulartics',
+    'angulartics.google.analytics': '../vendor/angulartics/angulartics-ga',
   },
   shim: {
     angular: {
