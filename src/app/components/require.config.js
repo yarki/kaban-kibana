@@ -50,7 +50,7 @@ require.config({
     elasticjs:                '../vendor/elasticjs/elastic-angular-client',
     
     angulartics:              '../vendor/angulartics/angulartics',
-    'angulartics.google.analytics': '../vendor/angulartics/angulartics-ga',
+    'angulartics.google.analytics':    '../vendor/angulartics/angulartics-ga'
   },
   shim: {
     angular: {
@@ -100,7 +100,10 @@ require.config({
     timepicker:             ['jquery', 'bootstrap'],
     datepicker:             ['jquery', 'bootstrap'],
 
-    elasticjs:              ['angular', '../vendor/elasticjs/elastic']
+    elasticjs:              ['angular', '../vendor/elasticjs/elastic'],
+    
+    angulartics:            ['angular'],
+    'angulartics.google.analytics':  ['angulartics']
   },
   waitSeconds: 60,
 });
