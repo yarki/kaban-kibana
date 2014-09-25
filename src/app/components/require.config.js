@@ -50,7 +50,9 @@ require.config({
     elasticjs:                '../vendor/elasticjs/elastic-angular-client',
     
     angulartics:              '../vendor/angulartics/angulartics',
-    'angulartics.google.analytics':    '../vendor/angulartics/angulartics-ga'
+    'angulartics.google.analytics':    '../vendor/angulartics/angulartics-ga',
+
+    elasticsearch:            '../vendor/elasticsearch/elasticsearch.angular'
   },
   shim: {
     angular: {
@@ -103,7 +105,9 @@ require.config({
     elasticjs:              ['angular', '../vendor/elasticjs/elastic'],
     
     angulartics:            ['angular'],
-    'angulartics.google.analytics':  ['angulartics']
+    'angulartics.google.analytics':  ['angulartics'],
+
+    elasticsearch:          ['angular']
   },
   waitSeconds: 60,
 });
