@@ -7,8 +7,8 @@ define([
   var module = angular.module('kibana.services');
 
   /* 
-  	Init elasticsearch.js client
-  	http://www.elasticsearch.org/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
+    Init elasticsearch.js client
+    http://www.elasticsearch.org/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
   */
   module.service('es', function (esFactory) {
     return esFactory({ 
