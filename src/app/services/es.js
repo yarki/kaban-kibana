@@ -1,14 +1,19 @@
 define([
-  'angular'
-], function (angular) {
+  'angular',
+  'config',
+], function (angular, config) {
   'use strict';
 
   var module = angular.module('kibana.services');
 
+  /* 
+  	Init elasticsearch.js client
+  	http://www.elasticsearch.org/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
+  */
   module.service('es', function (esFactory) {
     return esFactory({ 
-      host: 'localhost:9200',
-      log: 'trace'
+      host: config.elasticsearch,
+      log: 'info'
     });
   });
 
