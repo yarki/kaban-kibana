@@ -12,6 +12,8 @@ define([
   'angular-strap',
   'angular-dragdrop',
   'angular-cookies',
+  'angular-resource',
+  'angular-route',
   'extend-jquery',
   'bindonce',
   'angulartics',
@@ -102,6 +104,8 @@ function (angular, $, _, appLevelRequire) {
     'ngSanitize',
     'ngDragDrop',
     'ngCookies',
+    'ngResource',
+    'ngRoute',
     'kibana',
     'pasvaz.bindonce'
   ];
