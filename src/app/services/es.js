@@ -12,8 +12,7 @@ define([
   */
   module.service('es', function (esFactory) {
     return esFactory({ 
-      host: config.elasticsearch,
-      log: 'info'
+      host: config.elasticsearch
     });
   });
 
