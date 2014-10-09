@@ -1,0 +1,65 @@
+<div ng-controller='kaban_pivot' ng-init="init()">
+  <style>
+    .pieLabel { pointer-events: none }
+    .terms-legend-term {
+      word-break: break-all;
+    }
+
+    .terms-remaining {
+      bottom:0;
+      top:0;
+      background-color: #f00;
+    }
+
+    .terms-wrapper {
+      display: table;
+      width: 100%;
+    }
+
+    .terms-legend {
+      display: table-row;
+      height: 0;
+    }
+
+    .terms-legend {
+      display: table-row;
+    }
+  </style>
+
+
+  <div class="terms-wrapper">
+    <!-- keep legend from over lapping -->
+    <div style="clear:both"></div>
+
+    <!-- CHART -->
+    <div ng-show="panel.chart == 'bar'" kaban-pivot-chart params="{{panel}}" style="position:relative" class="pointer kaban-pivot-chart">
+    </div>
+
+    <!-- LEGEND -->
+    <div class="terms-legend" ng-show="panel.counter_pos == 'below' && panel.chart == 'bar'" id='{{$id}}-legend'>
+      
+      <!-- vertical legend below -->
+      <table class="small pull-right" ng-show="panel.arrangement == 'vertical'">
+        <tr ng-repeat="term in legend">
+          <td><i class="icon-circle" ng-style="{color:term.color}"></i></i></td>
+          <td class="terms-legend-term" style="padding-right:10px;padding-left:10px;">{{term.label}}</td>
+          <td>{{secondaryDimensionSums[term.label]}}</td>
+        </tr>
+      </table>
+
+      <table class="small pull-left" ng-show="panel.arrangement == 'vertical'">
+        <tr ng-repeat="term in primaryDimensionValues">
+          <td><i class="icon-circle"></i></i></td>
+          <td class="terms-legend-term" style="padding-right:10px;padding-left:10px;">{{term}}</td>
+          <td>{{primaryDimensionSums[term]}}</td>
+        </tr>
+      </table>
+
+      <!--   <span class="small pull-left">
+        &nbsp | {{ panel.aggFunction }} of <strong>{{ panel.valueField }}</strong>
+      </span> -->
+
+      <div style="clear:both"></div>
+    </div>
+
+</div>

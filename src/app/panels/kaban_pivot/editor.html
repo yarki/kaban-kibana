@@ -1,0 +1,48 @@
+  <div class="editor-row">
+    
+    <div class="section">
+      <h5>Dimensions</h5>      
+      <div class="editor-option">
+        <label class="small">Primary (X-axis)</label>
+        <input type="text" class="input-small" bs-typeahead="fields.list" ng-model="panel.primaryDimensionField" ng-change="set_refresh(true)">
+      </div>
+      <div class="editor-option">
+        <label class="small">Secondary (Y-axis)</label>
+        <input type="text" class="input-small" bs-typeahead="fields.list" ng-model="panel.secondaryDimensionField" ng-change="set_refresh(true)">
+      </div>
+    </div>
+    
+    <div class="section">
+      <h5>Measures</h5>
+      <div class="editor-option">
+        <label class="small">Value field</label>
+        <input type="text" class="input-small" bs-typeahead="fields.list" ng-model="panel.valueField" ng-change="set_refresh(true)">
+      </div>
+      <div class="editor-option">
+        <label class="small">Aggregation function</label>
+        <select class="input-medium" ng-model="panel.aggFunction" ng-options="f for f in ['sum']" ng-change="set_refresh(true)"></select>
+      </div>
+    </div>
+
+  </div>
+  
+
+  <div class="editor-row">
+    
+    <div class="section">
+      <h5>View Options</h5>
+      <div class="editor-option">
+        <label class="small">Style</label>
+        <select class="input-small" ng-model="panel.chart" ng-options="f for f in ['bar']"></select></span>
+      </div>
+      <div class="editor-option" ng-show="panel.chart == 'bar'">
+        <label class="small">Legend</label>
+        <select class="input-small" ng-model="panel.counter_pos" ng-options="f for f in ['below','none']"></select></span>
+      </div>
+      <div class="editor-option" ng-show="panel.counter_pos != 'none'">
+        <label class="small" >Legend Format</label>
+        <select class="input-small" ng-model="panel.arrangement" ng-options="f for f in ['vertical']"></select></span>
+      </div>
+    </div>
+
+  </div>
