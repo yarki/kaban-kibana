@@ -272,7 +272,7 @@ function (angular, app, _, $, kbn) {
             });
             series.push({ label: a, data: s});
           });
-          /////////////////////////////
+
 
           scope.allSeries = series;
           
@@ -319,7 +319,7 @@ function (angular, app, _, $, kbn) {
         elem.bind("plotclick", function (event, pos, item) {
           if (item) {
             // Drill-down to?
-            if (scope.primaryDimensionValues.length == 1) {
+            if (scope.primaryDimensionValues.length === 1) {
               // secondary dimension drill-down
               scope.drill_down(
                 scope.panel.secondaryDimensionField,
