@@ -151,7 +151,8 @@ function (angular, app, _, $, kbn) {
           "level_one": {
             "terms": {
               "field": $scope.panel.secondaryDimensionField,
-              "order": {"level_one_sum": "desc"}
+              "order": {"level_one_sum": "desc"},
+              "size": 0
             },
             "aggs": {
               "level_one_sum": {
@@ -160,7 +161,8 @@ function (angular, app, _, $, kbn) {
               "level_two": {
                 "terms": {
                   "field": $scope.panel.primaryDimensionField,
-                  "order": {"_term": "asc"}
+                  "order": {"_term": "asc"},
+                  "size": 0
                 },
                 "aggs": { 
                   "level_two_sum": {
