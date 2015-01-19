@@ -1,0 +1,82 @@
+<div ng-controller='kaban_multibarchart' ng-init="init()">
+  <style>
+    .pieLabel { pointer-events: none }
+    .terms-legend-term {
+      word-break: break-all;
+    }
+
+    .terms-legend-cell {
+      padding-left: 5px;
+      padding-right: 10px;
+      text-align: right;
+    }
+
+    .terms-remaining {
+      bottom:0;
+      top:0;
+      background-color: #f00;
+    }
+
+    .terms-wrapper {
+      display: table;
+      width: 100%;
+    }
+
+    .terms-legend {
+      display: table-row;
+      height: 0;
+    }
+
+    .terms-legend {
+      display: table-row;
+    }
+  </style>
+
+
+  <div class="terms-wrapper">
+    <!-- keep legend from over lapping -->
+    <div style="clear:both"></div>
+
+    <!-- CHART -->
+    <div ng-show="panel.chart == 'bar'" multi-bar-chart params="{{panel}}" style="position:relative" class="pointer multi--chart">
+    </div>
+
+    <!-- LEGEND -->
+    <div class="terms-legend" ng-show="panel.counter_pos == 'below' && panel.chart == 'bar'" id='{{$id}}-legend'>
+      
+      <!-- vertical legend below -->
+      <table class="small pull-right" ng-show="panel.arrangement == 'vertical'">
+        <tr ng-repeat="term in legend">
+          <td><i class="icon-circle" ng-style="{color:term.color}"></i></i></td>
+          <td class="terms-legend-term" style="padding-right:10px;padding-left:10px;">{{term.label}}</td>
+          <td>{{secondaryDimensionSums[term.label]}}</td>
+        </tr>
+      </table>
+
+      <table class="small pull-left" ng-show="panel.arrangement == 'vertical'">
+        <tr ng-repeat="term in dimensionValues">
+          <td><i class="icon-circle"></i></td>
+          <td class="terms-legend-term" style="padding-right:10px;padding-left:10px;">{{term}}</td>
+
+          <td style="padding-left:30px;"></td>
+          
+          <td><i class="icon-circle" ng-style="{color:legend[0].color}"></i></td>
+          <td class="terms-legend-cell">{{ legend[0].percents[dimensionValues.indexOf(term)].toFixed(0) + '%' }}</td>
+          <td class="terms-legend-cell">{{ legend[0].data[dimensionValues.indexOf(term)][1].toFixed(0) + ' ' + panel.units }}</td>
+
+          <td style="padding-left:30px;"></td> 
+
+          <td><i class="icon-circle" ng-style="{color:legend[1].color}"></i></td>
+          <td class="terms-legend-cell">{{ legend[1].percents[dimensionValues.indexOf(term)].toFixed(0) + '%' }}</td>
+          <td class="terms-legend-cell">{{ legend[1].data[dimensionValues.indexOf(term)][1].toFixed(0) + ' ' + panel.units }}</td>
+        </tr>
+      </table>
+
+      <!--   <span class="small pull-left">
+        &nbsp | {{ panel.aggFunction }} of <strong>{{ panel.valueField }}</strong>
+      </span> -->
+
+      <div style="clear:both"></div>
+    </div>
+
+</div>

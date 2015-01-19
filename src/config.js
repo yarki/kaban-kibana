@@ -75,7 +75,8 @@ function (Settings) {
       'terms',
       'stats',
       'sparklines',
-      'kaban_pivot'
+      'kaban_pivot',
+      'kaban_multibarchart'
     ]
   });
 });
