@@ -210,7 +210,7 @@ function (angular, app, _, $, kbn) {
 
     $scope.show_all = function () {
       $scope.collapsed = !$scope.collapsed;
-    }
+    };
   });
 
   module.directive('multiBarChart', function(querySrv) {
