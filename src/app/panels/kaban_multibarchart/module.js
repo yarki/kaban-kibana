@@ -117,7 +117,9 @@ function (angular, app, _, $, kbn) {
       $scope.$on('refresh', function() {
         $scope.get_data();
       });
-      $scope.get_data(); 
+      $scope.get_data();
+
+      $scope.collapsed = true;
     };
 
     $scope.get_data = function() {
@@ -206,6 +208,9 @@ function (angular, app, _, $, kbn) {
       $scope.$emit('render');
     };
 
+    $scope.show_all = function () {
+      $scope.collapsed = !$scope.collapsed;
+    }
   });
 
   module.directive('multiBarChart', function(querySrv) {
@@ -217,6 +222,7 @@ function (angular, app, _, $, kbn) {
         // Receive render events
         scope.$on('render', function(){
           render_panel();
+          scope.collapsible = scope.dimensionValues.length > scope.panel.size;
         });
 
         // Function for rendering panel

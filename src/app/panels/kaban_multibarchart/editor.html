@@ -61,6 +61,10 @@
         <label class="small" >Legend Format</label>
         <select class="input-small" ng-model="panel.arrangement" ng-options="f for f in ['vertical']"></select></span>
       </div>
+      <div class="editor-option">
+        <label class="small">Length</label>
+        <input class="input-small" type="number" ng-model="panel.size" ng-change="set_refresh(true)">
+      </div>
     </div>
 
   </div>

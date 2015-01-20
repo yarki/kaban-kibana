@@ -30,6 +30,12 @@
     .terms-legend {
       display: table-row;
     }
+
+    .toggleCollapse {
+      margin-top: 15px;
+      text-align: center;
+      border: 1px solid rgba(100, 100, 100, 0.5);
+    }
   </style>
 
 
@@ -54,17 +60,17 @@
       </table>
 
       <table class="small pull-left" ng-show="panel.arrangement == 'vertical'">
-        <tr ng-repeat="term in dimensionValues">
+        <tr ng-repeat="term in dimensionValues" ng-hide="$index + 1 > panel.size && collapsed">
           <td><i class="icon-circle"></i></td>
           <td class="terms-legend-term" style="padding-right:10px;padding-left:10px;">{{term}}</td>
 
           <td style="padding-left:30px;"></td>
-          
+
           <td><i class="icon-circle" ng-style="{color:legend[0].color}"></i></td>
           <td class="terms-legend-cell">{{ legend[0].percents[dimensionValues.indexOf(term)].toFixed(0) + '%' }}</td>
           <td class="terms-legend-cell">{{ legend[0].data[dimensionValues.indexOf(term)][1].toFixed(0) + ' ' + panel.units }}</td>
 
-          <td style="padding-left:30px;"></td> 
+          <td style="padding-left:30px;"></td>
 
           <td><i class="icon-circle" ng-style="{color:legend[1].color}"></i></td>
           <td class="terms-legend-cell">{{ legend[1].percents[dimensionValues.indexOf(term)].toFixed(0) + '%' }}</td>
@@ -77,6 +83,10 @@
       </span> -->
 
       <div style="clear:both"></div>
+      <div class="toggleCollapse" ng-if="collapsible" ng-click="show_all()">
+        <div class="link icon-chevron-up" ng-class="{ 'icon-chevron-down': collapsed }"></div>
+      </div>
     </div>
+  </div>
 
 </div>
