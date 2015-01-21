@@ -122,6 +122,18 @@ function (angular, app, _, kbn, moment) {
        */
       timeField: '@timestamp',
       /** @scratch /panels/table/5
+       * transformCells:: Set to true to transform the transformField according to the transformTemplate
+       */
+      transformCells: true,
+      /** @scratch /panels/table/5
+       * transformField:: If transformCells is set to true, this field will be transformed according to the transformTemplate
+       */
+      transformField: 'id',
+      /** @scratch /panels/table/5
+       * transformTemplate:: If transformCells is set to true, the transformField will be transformed according to this template
+       */
+      transformTemplate: '<a href="https://upsa.epam.com/workload/employeeView.do?employeeId={{value}}" target="_blank">{{value}}</a>',
+      /** @scratch /panels/table/5
        * spyable:: Set to false to disable the inspect icon
        */
       spyable : true,
@@ -466,7 +478,9 @@ function (angular, app, _, kbn, moment) {
       return obj;
     };
 
-
+    $scope.transformByTemplate = function(template, value) {
+      return template.replace(new RegExp('{{value}}', 'gi'), value);
+    };
   });
 
   // This also escapes some xml sequences

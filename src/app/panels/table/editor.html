@@ -27,6 +27,17 @@
         <label class="small">Time Field</label>
         <input type="text" class="input-small" ng-model="panel.timeField" ng-change="set_refresh(true)" bs-typeahead="fields.list">
       </div>
+      <div class="editor-option">
+        <label class="small">Transform cells <tip>Transform [transformField] according to [transformTemplate]</tip></label><input type="checkbox" ng-change="set_refresh(true)" ng-model="panel.transformCells" ng-checked="panel.transformCells">
+      </div>
+      <div class="editor-option" ng-show="panel.transformCells">
+        <label class="small">Field to transform</label>
+        <input type="text" class="input-small" ng-model="panel.transformField" ng-change="set_refresh(true)" bs-typeahead="fields.list">
+      </div>
+      <div class="editor-option" ng-show="panel.transformCells">
+        <label class="small">Transform template</label>
+        <input type="text" class="input-large" ng-model="panel.transformTemplate" ng-change="set_refresh(true)">
+      </div>
     </div>
     <div class="section span6">
       <h5>Columns</h5>
