@@ -132,7 +132,7 @@ function (angular, app, _, kbn, moment) {
       /** @scratch /panels/table/5
        * transformTemplate:: If transformCells is set to true, the transformField will be transformed according to this template
        */
-      transformTemplate: '<a href="https://upsa.epam.com/workload/employeeView.do?employeeId={{value}}" target="_blank">{{value}}</a>',
+      transformTemplate: '<a href="https://upsa.epam.com/workload/employeeView.do?employeeId={value}" target="_blank">{value}</a>',
       /** @scratch /panels/table/5
        * spyable:: Set to false to disable the inspect icon
        */
@@ -479,7 +479,7 @@ function (angular, app, _, kbn, moment) {
     };
 
     $scope.transformByTemplate = function(template, value) {
-      return template.replace(new RegExp('{{value}}', 'gi'), value);
+      return template.replace(new RegExp('{value}', 'gi'), value);
     };
   });
 
