@@ -41,6 +41,7 @@
     <link rel="stylesheet" ng-href="css/bootstrap.{{dashboard.current.style||'dark'}}.min.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css"/>
 
     <div ng-cloak ng-repeat='alert in dashAlerts.list' class="alert-{{alert.severity}} dashboard-notice" ng-show="$last">
       <button type="button" class="close" ng-click="dashAlerts.clear(alert)" style="padding-right:50px">&times;</button>
@@ -56,6 +57,8 @@
         </div>
       </div>
     </div>
+
+    <div class="dashboard-loader-menu" ng-cloak ng-controller="dashLoaderMenu" ng-include="'app/partials/dashLoaderMenu.html'" ng-hide="!visible"></div>
 
     <div ng-cloak ng-view></div>
 
