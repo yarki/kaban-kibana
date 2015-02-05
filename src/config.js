@@ -45,6 +45,14 @@ function (Settings) {
 
     /** @scratch /configuration/config.js/5
      *
+     * ==== empty_dashboard_scheme
+     *
+     * This is the empty dashboard scheme. You can create new dashboards based on this json scheme file.
+     */
+    empty_dashboard_scheme: '/dashboard/file/guided.json',
+
+    /** @scratch /configuration/config.js/5
+     *
      * ==== kibana-int
      *
      * The default ES index to use for storing Kibana specific object

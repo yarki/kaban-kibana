@@ -29,7 +29,7 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
       rows: [],
       pulldowns: [
         {
-          type: 'query',
+          type: 'query'
         },
         {
           type: 'filtering'
@@ -95,6 +95,8 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
     });
 
     var route = function() {
+      // close dashboard loader menu
+      $rootScope.$broadcast('hideDashboardLoaderMenu');
       // Is there a dashboard type and id in the URL?
       if(!(_.isUndefined($routeParams.kbnType)) && !(_.isUndefined($routeParams.kbnId))) {
         var _type = $routeParams.kbnType;
@@ -120,6 +122,8 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
           $location.path(config.default_route);
         }
       // No dashboard in the URL
+      } else if ($routeParams.action === 'new') {
+        $location.path(config.empty_dashboard_scheme);
       } else {
         // Check if browser supports localstorage, and if there's an old dashboard. If there is,
         // inform the user that they should save their dashboard to Elasticsearch and then set that

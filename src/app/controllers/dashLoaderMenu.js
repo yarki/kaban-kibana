@@ -11,20 +11,22 @@ define(
 
     angular
       .module('kibana.controllers')
-      .controller('dashLoaderMenu', function ($scope, dashboard, alertSrv) {
+      .controller('dashLoaderMenu', function ($scope, $location, dashboard, alertSrv, es) {
         $scope.visible = false;
+        $scope.elasticsearch = {};
 
-        $scope.$on('toggleDashboardLoaderMenu', function (event, loader) {
+        $scope.$on('toggleDashboardLoaderMenu', function () {
           $scope.visible = !$scope.visible;
-          $scope.elasticsearch = {};
-          $scope.loader = loader;
 
-          $scope.elasticsearch_dblist('title:*');
+          if ($scope.visible) {
+            $scope.elasticsearch_dblist('title:*');
+            _getAllIndices();
+          }
         });
 
-        $scope.hideDashboardLoaderMenu = function() {
+        $scope.$on('hideDashboardLoaderMenu', function () {
           $scope.visible = false;
-        };
+        });
 
         $scope.elasticsearch_delete = function (id) {
           dashboard.elasticsearch_delete(id).then(
@@ -47,13 +49,16 @@ define(
 
         $scope.elasticsearch_dblist = function (query) {
           dashboard
-            .elasticsearch_list(query, $scope.loader.load_elasticsearch_size)
+            .elasticsearch_list(query, dashboard.current.loader.load_elasticsearch_size)
             .then(function (result) {
               if (!_.isUndefined(result.hits)) {
-                $scope.hits = result.hits.total;
                 $scope.elasticsearch.dashboards = result.hits.hits;
               }
             });
+        };
+
+        $scope.createDashboard = function () {
+          $location.path('/dashboard/new');
         };
 
         $scope.save_gist = function () {
@@ -79,6 +84,14 @@ define(
               }
             });
         };
+
+        function _getAllIndices() {
+          return es.cat.indices({
+            h: 'index'
+          }).then(function (resp) {
+            $scope.allIndices = resp.trim().split(/\s+/)
+          });
+        }
       });
   }
 );

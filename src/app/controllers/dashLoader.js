@@ -8,8 +8,6 @@ function (angular, _) {
   var module = angular.module('kibana.controllers');
 
   module.controller('dashLoader', function($scope, $rootScope, $http, timer, dashboard, alertSrv, $location) {
-    $scope.loader = dashboard.current.loader;
-
     $scope.init = function() {
       $scope.gist_pattern = /(^\d{5,}$)|(^[a-z0-9]{10,}$)|(gist.github.com(\/*.*)\/[a-z0-9]{5,}\/*$)/;
       $scope.gist = $scope.gist || {};
@@ -72,7 +70,7 @@ function (angular, _) {
 
     $scope.toggleDashboardLoaderMenu = function ($event) {
       $event.preventDefault();
-      $rootScope.$broadcast('toggleDashboardLoaderMenu', $scope.loader);
+      $rootScope.$broadcast('toggleDashboardLoaderMenu');
     };
 
   });

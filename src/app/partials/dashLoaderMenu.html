@@ -2,56 +2,71 @@
   <h5>Load dashboard</h5>
 
   <form class="nomargin">
-    <input type="text" class="input-block-level" ng-model="elasticsearch.query" ng-change="elasticsearch_dblist('title:'+elasticsearch.query+'*')"
+    <input type="text" class="input-block-level" ng-model="elasticsearch.query"
+           ng-change="elasticsearch_dblist('title:'+elasticsearch.query+'*')"
            placeholder="Type to filter"/>
   </form>
   <h6 ng-hide="elasticsearch.dashboards.length">No dashboards matching your query found</h6>
   <table class="table table-condensed table-striped">
     <tr bindonce ng-repeat="row in elasticsearch.dashboards | orderBy:['_id']">
-      <td class="span1"><a confirm-click="elasticsearch_delete(row._id)"
-             confirmation="Are you sure you want to delete the {{row._id}} dashboard">
-        <i class="icon-remove"></i>
-      </a></td>
-      <td><a href="#/dashboard/elasticsearch/{{row._id}}" bo-text="row._id" ng-click="hideDashboardLoaderMenu()"></a>
+      <td class="span1">
+        <a confirm-click="elasticsearch_delete(row._id)"
+           confirmation="Are you sure you want to delete the {{row._id}} dashboard">
+          <i class="icon-remove"></i>
+        </a>
       </td>
-      <td class="span1"><a>
-        <i class="icon-share" ng-click="share = dashboard.share_link(row._id,'elasticsearch',row._id)"
-           bs-modal="'app/partials/dashLoaderShare.html'"></i>
-      </a></td>
+      <td>
+        <a href="#/dashboard/elasticsearch/{{row._id}}" bo-text="row._id"></a>
+      </td>
+      <td class="span1">
+        <a> <i class="icon-share" ng-click="share = dashboard.share_link(row._id,'elasticsearch',row._id)"
+               bs-modal="'app/partials/dashLoaderShare.html'"></i> </a>
+      </td>
     </tr>
   </table>
 
-  <div class="span">
-    <h5></h5>
-  </div>
+  <div class="row">
+    <div class="span">
+      <h5>Create new
+        <tip>Create a new dashboard from the existing base scheme</tip>
+      </h5>
+      <form class="form-inline">
+        <label>
+          Index
+          <input type="text" bs-typeahead="allIndices" data-min-length="0" data-items="20"/>
+        </label>
+        <button class="btn btn-success" ng-click="createDashboard()">Create</button>
+      </form>
+    </div>
 
-  <div class="span" ng-show='dashboard.current.loader.load_local'>
-    <h5>Local File
-      <tip>Load dashboard JSON layout from file</tip>
-    </h5>
-    <form>
-      <input type="file" id="dashupload" dash-upload/><br>
-    </form>
-  </div>
+    <div class="span" ng-show='dashboard.current.loader.load_local'>
+      <h5>Local File
+        <tip>Load dashboard JSON layout from file</tip>
+      </h5>
+      <form>
+        <input type="file" id="dashupload" dash-upload/><br>
+      </form>
+    </div>
 
-  <div class="span" ng-show='dashboard.current.loader.load_gist'>
-    <h5>Gist
-      <tip>Enter a gist number or url</tip>
-    </h5>
-    <form>
-      <input type="text" ng-model="gist.url" placeholder="Gist number or URL"><br>
-      <button class="btn" ng-click="gist_dblist(dashboard.gist_id(gist.url))" ng-show="dashboard.is_gist(gist.url)">
-        <i class="icon-github-alt"></i> Get gist:{{gist.url | gistid}}
-      </button>
-      <h6 ng-show="gist.files.length">Dashboards in gist:{{gist.url | gistid}}
-        <small>click to load</small>
-      </h6>
-      <h6 ng-hide="gist.files.length || !gist.url.length">No gist dashboards found</h6>
-      <table class="table table-condensed table-striped">
-        <tr ng-repeat="file in gist.files">
-          <td><a ng-click="dashboard.dash_load(file)">{{file.title}}</a></td>
-        </tr>
-      </table>
-    </form>
+    <div class="span" ng-show='dashboard.current.loader.load_gist'>
+      <h5>Gist
+        <tip>Enter a gist number or url</tip>
+      </h5>
+      <form>
+        <input type="text" ng-model="gist.url" placeholder="Gist number or URL"><br>
+        <button class="btn" ng-click="gist_dblist(dashboard.gist_id(gist.url))" ng-show="dashboard.is_gist(gist.url)">
+          <i class="icon-github-alt"></i> Get gist:{{gist.url | gistid}}
+        </button>
+        <h6 ng-show="gist.files.length">Dashboards in gist:{{gist.url | gistid}}
+          <small>click to load</small>
+        </h6>
+        <h6 ng-hide="gist.files.length || !gist.url.length">No gist dashboards found</h6>
+        <table class="table table-condensed table-striped">
+          <tr ng-repeat="file in gist.files">
+            <td><a ng-click="dashboard.dash_load(file)">{{file.title}}</a></td>
+          </tr>
+        </table>
+      </form>
+    </div>
   </div>
 </div>
