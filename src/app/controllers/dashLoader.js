@@ -53,7 +53,7 @@ function (angular, _) {
       dashboard.elasticsearch_save(
         type,
         ($scope.elasticsearch.title || dashboard.current.title),
-        ($scope.loader.save_temp_ttl_enable ? ttl : false)
+        (dashboard.current.loader.save_temp_ttl_enable ? ttl : false)
       ).then(
         function(result) {
         if(!_.isUndefined(result._id)) {
