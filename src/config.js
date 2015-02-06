@@ -47,9 +47,10 @@ function (Settings) {
      *
      * ==== empty_dashboard_scheme
      *
-     * This is the empty dashboard scheme. You can create new dashboards based on this json scheme file.
+     * This is the empty dashboard scheme. You can create new dashboards based on this json scheme file. Default path
+     * for new dashboards is '/app/dashboards'
      */
-    empty_dashboard_scheme: '/dashboard/file/guided.json',
+    empty_dashboard_scheme: 'guided.json',
 
     /** @scratch /configuration/config.js/5
      *

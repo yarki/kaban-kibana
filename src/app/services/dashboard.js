@@ -122,8 +122,9 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
           $location.path(config.default_route);
         }
       // No dashboard in the URL
-      } else if ($routeParams.action === 'new') {
-        $location.path(config.empty_dashboard_scheme);
+      } else if ($routeParams.index) {
+        var defaultIndex = $routeParams.index;
+        self.create_new(defaultIndex);
       } else {
         // Check if browser supports localstorage, and if there's an old dashboard. If there is,
         // inform the user that they should save their dashboard to Elasticsearch and then set that
@@ -339,7 +340,7 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
       self.dash_load(dashboard);
     };
 
-    this.file_load = function(file) {
+    this.file_load = function(file, defaultIndex) {
       return $http({
         url: "app/dashboards/"+file.replace(/\.(?!json)/,"/")+'?' + new Date().getTime(),
         method: "GET",
@@ -350,7 +351,11 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
         if(!result) {
           return false;
         }
-        self.dash_load(dash_defaults(result.data));
+        var dashboard = result.data;
+        if (defaultIndex && dashboard.index) {
+          dashboard.index.default = defaultIndex;
+        }
+        self.dash_load(dash_defaults(dashboard));
         return true;
       },function() {
         alertSrv.set('Error',"Could not load <i>dashboards/"+file+"</i>. Please make sure it exists" ,'error');
@@ -401,6 +406,10 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
           'error');
         return false;
       });
+    };
+
+    this.create_new = function (defaultIndex) {
+      self.file_load(config.empty_dashboard_scheme, defaultIndex);
     };
 
     this.elasticsearch_save = function(type,title,ttl) {

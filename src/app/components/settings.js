@@ -14,7 +14,7 @@ function (_) {
       panel_names       : [],
       kibana_index      : 'kibana-int',
       default_route     : '/dashboard/file/default.json',
-      empty_dashboard_scheme: '/dashboard/file/guided.json'
+      empty_dashboard_scheme: 'guided.json'
     };
 
     // This initializes a new hash on purpose, to avoid adding parameters to

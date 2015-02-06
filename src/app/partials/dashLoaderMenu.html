@@ -33,9 +33,9 @@
       <form class="form-inline">
         <label>
           Index
-          <input type="text" bs-typeahead="allIndices" data-min-length="0" data-items="20"/>
+          <input type="text" bs-typeahead="allIndices" data-min-length="0" data-items="20" ng-model="newDashboardIndex"/>
         </label>
-        <button class="btn btn-success" ng-click="createDashboard()">Create</button>
+        <button class="btn btn-success" ng-click="createDashboard(newDashboardIndex)">Create</button>
       </form>
     </div>
 

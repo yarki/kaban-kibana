@@ -57,8 +57,8 @@ define(
             });
         };
 
-        $scope.createDashboard = function () {
-          $location.path('/dashboard/new');
+        $scope.createDashboard = function (newDashboardIndex) {
+          $location.path('/new/' + newDashboardIndex);
         };
 
         $scope.save_gist = function () {

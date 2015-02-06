@@ -86,7 +86,7 @@ function (angular, $, _, appLevelRequire) {
       .when('/dashboard/:kbnType/:kbnId/:params', {
         templateUrl: 'app/partials/dashboard.html'
       })
-      .when('/dashboard/:action', {
+      .when('/new/:index', {
         templateUrl: 'app/partials/dashboard.html'
       })
       .otherwise({
