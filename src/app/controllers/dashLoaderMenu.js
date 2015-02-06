@@ -89,7 +89,7 @@ define(
           return es.cat.indices({
             h: 'index'
           }).then(function (resp) {
-            $scope.allIndices = resp.trim().split(/\s+/)
+            $scope.allIndices = resp.trim().split(/\s+/);
           });
         }
       });
